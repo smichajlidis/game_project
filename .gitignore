@@ -1,0 +1,9 @@
+.codelite
+build-Debug
+.clangd
+.clang-format
+compile_commands.json
+game_project.workspace
+main.mk
+main.project
+Makefile

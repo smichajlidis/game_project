@@ -1,0 +1,2 @@
+Jest kasa, pijesz piwo.
+Nie ma kasy, nie ma piwa.
