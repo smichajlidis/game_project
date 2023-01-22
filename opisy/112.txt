@@ -1,2 +1,6 @@
 Gracze w kosci.
-Gram za x.
+Gram za 5.
+Gram za 10.
+Gram za 25.
+Gram za 50.
+Gram za 100.
