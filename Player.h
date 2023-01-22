@@ -19,6 +19,7 @@ class Player
     public:
         void display_name();
         int get_gold();
+        void decrease_gold(int value);
         
         Player();
         Player(std::string name_val, int health_val, int strength_val, int charisma_val, int luck_val, int gold_val);

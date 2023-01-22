@@ -12,7 +12,7 @@ int main() {
     int navigation {1};
     std::string wiersz;
     
-    Player player {"imie", 100, 1, 1, 1, 0};
+    Player player {"imie", 100, 1, 1, 1, 7};
 
     while(navigation!=9 && navigation!=0){
 
@@ -21,6 +21,8 @@ int main() {
         plik.open(file_name, ios::in);
         if(plik.good()==false) cout<<"Cos poszlo nie tak! Wybierz '0', aby wrocic.\n";
         int count {-1};
+        
+        std::cout<<"Ilosc zlota: "<<player.get_gold()<<"\n\n";
         
         switch(navigation) {
         
@@ -32,8 +34,10 @@ int main() {
                 while (getline(plik,wiersz)){
                     lines.push_back(wiersz);
                 }
-                if (player.get_gold()>=stoi(lines.at(0))) 
+                if (player.get_gold()>=stoi(lines.at(0))) {
                     std::cout<<lines.at(1)<<endl;
+                    player.decrease_gold(stoi(lines.at(0)));
+                }
                 else
                     std::cout<<lines.at(2)<<endl;
                 break;

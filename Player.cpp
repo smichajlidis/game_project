@@ -10,6 +10,10 @@ int Player::get_gold() {
     return gold;
 }
 
+void Player::decrease_gold(int value) {
+    gold-=value;
+}
+
 Player::Player() {
     name = "none";
     health = 100;
