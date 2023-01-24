@@ -12,7 +12,9 @@ int main() {
     int navigation {1};
     std::string wiersz;
     
-    Player player {"imie", 3, 1, 1, 1, 1500};
+    Player player {3, 1, 1, 1, 1500};
+    Item miecz {"miecz",3,80,25,false,true,false,false,false};
+    player.add_tavern_trade(miecz);
 
     while(navigation!=9 && navigation!=0){
 
@@ -32,7 +34,8 @@ int main() {
         int count {-1};
 
         switch(navigation) {
-        
+            
+            case 1112: player.display_tavern_trade(); break;
             case 1111:
             case 1114:
             case 1141:

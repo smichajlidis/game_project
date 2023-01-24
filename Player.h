@@ -8,7 +8,6 @@
 class Player
 {
     private:
-        std::string name;
         int health;
         int strength;
         int charisma;
@@ -16,12 +15,15 @@ class Player
         int gold;
         std::vector <Item> equipment {};
         int drunk;
+        
+        std::vector <Item> tavern_trade {};
+        
     public:
-        void display_name();
+
+        void add_tavern_trade(Item object);
+        void display_tavern_trade();
+
         int get_gold();
-        
-        
-        
         
         int get_drunk();
         int get_health();
@@ -37,7 +39,7 @@ class Player
         void restore_health();
         
         Player();
-        Player(std::string name_val, int health_val, int strength_val, int charisma_val, int luck_val, int gold_val);
+        Player(int health_val, int strength_val, int charisma_val, int luck_val, int gold_val);
         ~Player();
 };
 

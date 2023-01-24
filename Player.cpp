@@ -1,10 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Player.h"
-
-void Player::display_name() {
-    std::cout<<name<<std::endl;
-}
+#include "Item.h"
 
 int Player::get_gold() {
     return gold;
@@ -47,12 +44,10 @@ int Player::get_luck() {
 }
 
 Player::Player() {
-    name = "none";
     health = 100;
 }
 
-Player::Player(std::string name_val, int health_val, int strength_val, int charisma_val, int luck_val, int gold_val) {
-    name = name_val;
+Player::Player(int health_val, int strength_val, int charisma_val, int luck_val, int gold_val) {
     health = health_val;
     strength = strength_val;
     charisma = charisma_val;
@@ -62,4 +57,14 @@ Player::Player(std::string name_val, int health_val, int strength_val, int chari
 }
 
 Player::~Player(){
+}
+
+void Player::add_tavern_trade(Item object) {
+    tavern_trade.push_back(object);
+}
+
+void Player::display_tavern_trade() {
+    for(auto i: tavern_trade) {
+        std::cout<<i.get_name()<<std::endl;
+    }
 }
