@@ -12,18 +12,25 @@ int main() {
     int navigation {1};
     std::string wiersz;
     
-    Player player {"imie", 100, 1, 1, 1, 7};
+    Player player {"imie", 3, 1, 1, 1, 1500};
 
     while(navigation!=9 && navigation!=0){
 
+        player.decrease_drunk();
+        
+        std::cout<<"Zdrowie: "<<player.get_health(); if(player.get_drunk()>0) std::cout<<" -"<<player.get_drunk()*2;
+        std::cout<<" || Zloto: "<<player.get_gold();
+        std::cout<<" || Sila: "<<player.get_strength(); if(player.get_drunk()>0) std::cout<<" +"<<player.get_drunk();
+        std::cout<<" || Charyzma: "<<player.get_charisma(); if(player.get_drunk()>0) std::cout<<" +"<<player.get_drunk();
+        std::cout<<" || Szczescie: "<<player.get_luck(); if(player.get_drunk()>0) std::cout<<" +"<<player.get_drunk()/2;
+        std::cout<<"\n\n";
+        
         string file_name = "opisy/"+to_string(navigation)+".txt";
         fstream plik;
         plik.open(file_name, ios::in);
         if(plik.good()==false) cout<<"Cos poszlo nie tak! Wybierz '0', aby wrocic.\n";
         int count {-1};
-        
-        std::cout<<"Ilosc zlota: "<<player.get_gold()<<"\n\n";
-        
+
         switch(navigation) {
         
             case 1111:
@@ -37,9 +44,22 @@ int main() {
                 if (player.get_gold()>=stoi(lines.at(0))) {
                     std::cout<<lines.at(1)<<endl;
                     player.decrease_gold(stoi(lines.at(0)));
+                    std::cout<<"\nZloto: -"<<lines.at(0)<<std::endl;
+                    
+                    switch(navigation) {
+                    case 1111: player.increase_drunk(); break;
+                    case 1114: player.increase_health(15); std::cout<<"Zdrowie: +15\n"; break;
+                    case 1141: player.restore_health(); std::cout<<"Przywrocono zdrowie\n"; break;
+                    case 1221: std::cout<<"KONIEC GRY\n"; navigation=9; break;
+                    }
+                    
+                    
                 }
                 else
                     std::cout<<lines.at(2)<<endl;
+                std::cout<<"\n";
+                
+                
                 break;
             }
             default: {
