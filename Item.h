@@ -6,8 +6,9 @@ class Item
 {
     private:
         std::string name;
+        int value;
     public:
-        Item(std::string name_val);
+        Item(std::string name_val, int value_val);
         ~Item();
 };
 
