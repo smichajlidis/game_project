@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <ctime>
 #include "Player.h"
 #include "Item.h"
 
@@ -205,4 +206,37 @@ void Player::get_topbar() {
         std::cout<<" || Charyzma: "<<get_charisma(); if(get_drunk()>0) std::cout<<" +"<<get_drunk();
         std::cout<<" || Szczescie: "<<get_luck(); if(get_drunk()>0) std::cout<<" +"<<get_drunk()/2;
         std::cout<<"\n\n";
+}
+
+void Player::gamblers(int value) {
+    
+    int choice {};
+    std::vector <int> results {};
+    
+    srand(time(NULL));
+    std::cout<<"Postawiles "<<value<<" sztuk zlota i rzucasz koscmi. Twoje kosci pokazuja:\n\n";
+    
+    for(int i {1}; i <= 6; i++) {
+        results.push_back((std::rand() %6)+1);
+    }
+    
+    std::cout<<"Pierwsza kosc: "<<results.at(0)<<std::endl;
+    std::cout<<"Druga kosc: "<<results.at(1)<<std::endl;
+    std::cout<<"Trzecia kosc: "<<results.at(2)<<std::endl;
+    std::cout<<"Czwarta kosc: "<<results.at(3)<<std::endl;
+    std::cout<<"Piata kosc: "<<results.at(4)<<std::endl;
+    std::cout<<"Szosta kosc: "<<results.at(5)<<std::endl;
+    
+    std::cout<<"\nTwoj wynik to "<<results.at(0)<<" + "<<results.at(1)<<" + "<<results.at(2)<<" + "<<results.at(3)<<" + "<<results.at(4)<<" + "<<results.at(5)<<" = "<<results.at(0)+results.at(1)+results.at(2)+results.at(3)+results.at(4)+results.at(5)<<std::endl;
+    if(results.at(0)+results.at(1)+results.at(2)+results.at(3)+results.at(4)+results.at(5) > 22) {
+        std::cout<<"\nWygrales!\n+"<<value<<" sztuk zlota";
+        increase_gold(value);
+    }
+    else {
+        std::cout<<"\nPrzegrales\n-"<<value<<" sztuk zlota";
+        decrease_gold(value);
+    }
+    std::cout<<"\nWybierz 0, aby wrocic: ";
+    std::cin>>choice;
+    
 }

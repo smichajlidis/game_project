@@ -20,10 +20,9 @@ class Player
         
     public:
 
-        
-        
         void display_tavern_trade();
         void get_topbar();
+        void gamblers(int value);
         
         void add_equipment(Item object);
         void remove_equipment(Item object);

@@ -41,6 +41,12 @@ int main() {
 
         switch(navigation) {
             
+            
+            case 1121: player.gamblers(5); navigation=(navigation-navigation%10)/10; system("cls"); break;
+            case 1122: player.gamblers(10); navigation=(navigation-navigation%10)/10; system("cls"); break;
+            case 1123: player.gamblers(25); navigation=(navigation-navigation%10)/10; system("cls"); break;
+            case 1124: player.gamblers(50); navigation=(navigation-navigation%10)/10; system("cls"); break;
+            case 1125: player.gamblers(100); navigation=(navigation-navigation%10)/10; system("cls"); break;
             case 1112: player.display_tavern_trade(); navigation=(navigation-navigation%10)/10; system("cls"); break;
             case 1111:
             case 1114:
