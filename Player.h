@@ -20,11 +20,15 @@ class Player
         
     public:
 
-        void add_tavern_trade(Item object);
-        void remove_tavern_trade(Item object);
+        
+        
         void display_tavern_trade();
+        void get_topbar();
         
         void add_equipment(Item object);
+        void remove_equipment(Item object);
+        void add_tavern_trade(Item object);
+        void remove_tavern_trade(Item object);
 
         int get_gold();
         
@@ -39,6 +43,7 @@ class Player
         
         void increase_drunk();
         void increase_health(int value);
+        void increase_gold(int value);
         void restore_health();
         
         Player();

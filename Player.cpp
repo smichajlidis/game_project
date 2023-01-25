@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cstdlib>
 #include "Player.h"
 #include "Item.h"
 
@@ -85,40 +86,104 @@ void Player::remove_tavern_trade(Item object) {
     }
 }
 
+void Player::remove_equipment(Item object) {
+    
+    auto it = equipment.begin();
+    
+    for(auto &i: equipment) {
+        if (i.get_name()==object.get_name()) {
+            if (i.get_amount()>1) {
+                i.decrease_amount(1);
+            }
+            else equipment.erase(it);
+        } 
+    it++;
+    }
+}
+
+void Player::increase_gold(int value) {
+    gold+=value;
+}
+
 void Player::display_tavern_trade() {
     
-    for(auto i: equipment) {
-        std::cout<<i.get_name()<<"ilosc: "<<i.get_amount()<<"\n";
-    }
-    
-    std::cout<<"Chcesz cos kupic? Zobacz, co mam:\n\n";
-    int count {1};
-    int amount {1};
-    for(auto i: tavern_trade) {
-        std::cout<<count<<". "<<i.get_name()<<" Ilosc: "<<i.get_amount()<<" Wlasciwosc: "<<i.get_feature()<<"+"<<i.get_value()<<" Cena: "<<i.get_price()<<std::endl;
-        ++count;
-    }
-    std::cout<<"\nTo co bys chcial? ";
     int choice {};
+    
+    std::cout<<"1. Kupuje.\n2. Sprzedaje.\n0. Powrot.\n";
+    std::cout<<"\nTwoj wybor: ";
+    std::cin>>choice;
     do {
-        std::cin>>choice;
-    } while (choice>=count);
-    if ((tavern_trade.at(choice-1)).get_amount()>1) {
-        
-        std::cout<<"Ile sztuk potrzebujesz? ";
-        std::cin>>amount;
-    }
-    
-    std::cout<<"Prosze bardzo\n"<<"Zloto -"<<(tavern_trade.at(choice-1)).get_price()*amount;
-    
-    while(amount) {
-        std::cout<<"\n+"<<(tavern_trade.at(choice-1)).get_name();
-        add_equipment(tavern_trade.at(choice-1));
-        decrease_gold((tavern_trade.at(choice-1)).get_price());
-        remove_tavern_trade(tavern_trade.at(choice-1));
-        --amount;
-    }
-    
+        if (choice==0) break;
+        system("cls");
+        get_topbar();
+        switch (choice) {
+            case 1: {
+                std::cout<<"To wszystko, co mam:\n\n";
+                int count {1};
+                int amount {1};
+                for(auto i: tavern_trade) {
+                    std::cout<<count<<". "<<i.get_name()<<" Ilosc: "<<i.get_amount()<<" Wlasciwosc: "<<i.get_feature()<<"+"<<i.get_value()<<" Cena: "<<i.get_price()<<std::endl;
+                    ++count;
+                }
+                std::cout<<"\nTo co bys chcial? ";
+                do {
+                    std::cin>>choice;
+                } while (choice>=count);
+                if ((tavern_trade.at(choice-1)).get_amount()>1) {
+                    
+                    std::cout<<"Ile sztuk potrzebujesz? ";
+                    std::cin>>amount;
+                }
+                system("cls");
+                get_topbar();
+                std::cout<<"Prosze bardzo\n\n"<<"Zloto -"<<(tavern_trade.at(choice-1)).get_price()*amount;
+                
+                while(amount) {
+                    std::cout<<"\n+"<<(tavern_trade.at(choice-1)).get_name();
+                    add_equipment(tavern_trade.at(choice-1));
+                    decrease_gold((tavern_trade.at(choice-1)).get_price());
+                    remove_tavern_trade(tavern_trade.at(choice-1));
+                    --amount;
+                }
+                std::cout<<"\nCos jeszcze?\n\n1. Chce teraz cos kupic.\n2. Chce jeszcze cos sprzedac.\n0. Powrot";
+                std::cout<<"\n\nTwoj wybor: ";
+                std::cin>>choice;
+                break;
+            }
+            case 2: {
+                int count {1};
+                int amount {1};
+                for(auto i: equipment) {
+                    std::cout<<count<<". "<<i.get_name()<<" Ilosc: "<<i.get_amount()<<" Wlasciwosc: "<<i.get_feature()<<"+"<<i.get_value()<<" Cena: "<<i.get_price()<<std::endl;
+                    ++count;
+                }
+                std::cout<<"\nTo co bys chcial sprzedac? ";
+                do {
+                    std::cin>>choice;
+                } while (choice>=count);
+                if ((equipment.at(choice-1)).get_amount()>1) {
+                    
+                    std::cout<<"Ile sztuk chcesz sprzedac? ";
+                    std::cin>>amount;
+                }
+                system("cls");
+                get_topbar();
+                std::cout<<"Prosze bardzo!\n\n"<<"Zloto +"<<(equipment.at(choice-1)).get_price()*amount;
+                
+                while(amount) {
+                    std::cout<<"\n-"<<(equipment.at(choice-1)).get_name();
+                    add_tavern_trade(equipment.at(choice-1));
+                    increase_gold((equipment.at(choice-1)).get_price());
+                    remove_equipment(equipment.at(choice-1));
+                    --amount;
+                }
+                std::cout<<"\n\nCos jeszcze?\n\n1. Chce kupic cos jeszcze.\n2. Chce teraz cos sprzedac.\n0. Powrot";
+                std::cout<<"\n\nTwoj wybor: ";
+                std::cin>>choice;
+                break;
+            }
+        }
+    } while (choice!=0);
 }
 
 void Player::add_equipment(Item object) {
@@ -131,4 +196,13 @@ void Player::add_equipment(Item object) {
         }
     }
     if (done==false) equipment.push_back(object);
+}
+
+void Player::get_topbar() {
+    std::cout<<"Zdrowie: "<<get_health(); if(get_drunk()>0) std::cout<<" -"<<get_drunk()*2;
+        std::cout<<" || Zloto: "<<get_gold();
+        std::cout<<" || Sila: "<<get_strength(); if(get_drunk()>0) std::cout<<" +"<<get_drunk();
+        std::cout<<" || Charyzma: "<<get_charisma(); if(get_drunk()>0) std::cout<<" +"<<get_drunk();
+        std::cout<<" || Szczescie: "<<get_luck(); if(get_drunk()>0) std::cout<<" +"<<get_drunk()/2;
+        std::cout<<"\n\n";
 }
