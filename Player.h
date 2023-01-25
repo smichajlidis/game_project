@@ -21,7 +21,10 @@ class Player
     public:
 
         void add_tavern_trade(Item object);
+        void remove_tavern_trade(Item object);
         void display_tavern_trade();
+        
+        void add_equipment(Item object);
 
         int get_gold();
         

@@ -18,3 +18,31 @@ Item::~Item() {
 std::string Item::get_name() {
     return name;
 }
+
+int Item::get_amount() {
+    return amount;
+}
+
+std::string Item::get_feature() {
+     if (food==true) return "przywraca zdrowie";
+     if (weapon==true && hunting==false) return "sila";
+     if (armor==true) return "zdrowie";
+     if (hunting==true) return "umozliwia polowanie oraz sila";
+     else return "charyzma";
+}
+
+int Item::get_value() {
+    return value;
+}
+
+int Item::get_price() {
+    return price;
+}
+
+void Item::increase_amount(int value) {
+    amount+=value;
+}
+
+void Item::decrease_amount(int value) {
+    amount-=value;
+}

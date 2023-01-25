@@ -60,11 +60,69 @@ Player::~Player(){
 }
 
 void Player::add_tavern_trade(Item object) {
-    tavern_trade.push_back(object);
+    bool done {false};
+    for(auto &i: tavern_trade) {
+        if (i.get_name()==object.get_name()) {
+            i.increase_amount(object.get_amount());
+            done=true;
+        }
+    }
+    if (done==false) tavern_trade.push_back(object);
+}
+
+void Player::remove_tavern_trade(Item object) {
+    
+    auto it = tavern_trade.begin();
+    
+    for(auto &i: tavern_trade) {
+        if (i.get_name()==object.get_name()) {
+            if (i.get_amount()>1) {
+                i.decrease_amount(object.get_amount());
+            }
+            else tavern_trade.erase(it);
+        } 
+    it++;
+    }
 }
 
 void Player::display_tavern_trade() {
+    std::cout<<"Chcesz cos kupic? Zobacz, co mam:\n\n";
+    int count {1};
+    int amount {1};
     for(auto i: tavern_trade) {
-        std::cout<<i.get_name()<<std::endl;
+        std::cout<<count<<". "<<i.get_name()<<" Ilosc: "<<i.get_amount()<<" Wlasciwosc: "<<i.get_feature()<<"+"<<i.get_value()<<" Cena: "<<i.get_price()<<std::endl;
+        ++count;
     }
+    std::cout<<"\nTo co bys chcial? ";
+    int choice {};
+    do {
+        std::cin>>choice;
+    } while (choice>=count);
+    if ((tavern_trade.at(choice-1)).get_amount()>1) {
+        
+        std::cout<<"Ile sztuk potrzebujesz? ";
+        std::cin>>amount;
+    }
+    
+    std::cout<<"Prosze bardzo\n"<<"Zloto -"<<(tavern_trade.at(choice-1)).get_price()*amount;
+    
+    while(amount) {
+        std::cout<<"\n+"<<(tavern_trade.at(choice-1)).get_name();
+        add_equipment(tavern_trade.at(choice-1));
+        decrease_gold((tavern_trade.at(choice-1)).get_price());
+        remove_tavern_trade(tavern_trade.at(choice-1));
+        --amount;
+    }
+    
+}
+
+void Player::add_equipment(Item object) {
+    bool done {false};
+    for(auto &i: equipment) {
+        if (i.get_name()==object.get_name()) {
+            i.increase_amount(object.get_amount());
+            done=true;
+        }
+    }
+    if (done==false) equipment.push_back(object);
 }

@@ -13,8 +13,19 @@ int main() {
     std::string wiersz;
     
     Player player {3, 1, 1, 1, 1500};
-    Item miecz {"miecz",3,80,25,false,true,false,false,false};
+    Item miecz {"miecz",1,80,25,false,true,false,false,false};
+    Item luk {"luk",1,50,15,false,true,false,true,false};
+    Item zbroja_skorzana {"zbroja skorzana",1,150,30,false,false,true,false,false};
+    Item jablko {"jablko",1,3,5,true,false,false,false,false};
+    Item szata {"szata",1,350,35,false,false,false,false,true};
+    
     player.add_tavern_trade(miecz);
+    player.add_tavern_trade(luk);
+    player.add_tavern_trade(zbroja_skorzana);
+    for(int i {0}; i < 5; i++) {
+        player.add_tavern_trade(jablko);
+    }
+    player.add_tavern_trade(szata);
 
     while(navigation!=9 && navigation!=0){
 
