@@ -46,3 +46,7 @@ void Item::increase_amount(int value) {
 void Item::decrease_amount(int value) {
     amount-=value;
 }
+
+void Item::set_amount(int value) {
+    amount=value;
+}

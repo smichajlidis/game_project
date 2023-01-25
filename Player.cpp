@@ -77,7 +77,7 @@ void Player::remove_tavern_trade(Item object) {
     for(auto &i: tavern_trade) {
         if (i.get_name()==object.get_name()) {
             if (i.get_amount()>1) {
-                i.decrease_amount(object.get_amount());
+                i.decrease_amount(1);
             }
             else tavern_trade.erase(it);
         } 
@@ -86,6 +86,11 @@ void Player::remove_tavern_trade(Item object) {
 }
 
 void Player::display_tavern_trade() {
+    
+    for(auto i: equipment) {
+        std::cout<<i.get_name()<<"ilosc: "<<i.get_amount()<<"\n";
+    }
+    
     std::cout<<"Chcesz cos kupic? Zobacz, co mam:\n\n";
     int count {1};
     int amount {1};
@@ -117,10 +122,11 @@ void Player::display_tavern_trade() {
 }
 
 void Player::add_equipment(Item object) {
+    object.set_amount(1);
     bool done {false};
     for(auto &i: equipment) {
         if (i.get_name()==object.get_name()) {
-            i.increase_amount(object.get_amount());
+            i.increase_amount(1);
             done=true;
         }
     }

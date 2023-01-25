@@ -24,6 +24,7 @@ class Item
         
         void increase_amount(int value);
         void decrease_amount(int value);
+        void set_amount(int value);
         
         Item(std::string name_val, int amount_val, int price_val, int value_val, bool food_val, bool weapon_val, bool armor_val, bool hunting_val, bool clothing_val);
         ~Item();
