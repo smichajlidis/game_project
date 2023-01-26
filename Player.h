@@ -40,6 +40,7 @@ class Player
         int get_luck();
         
         bool get_temple();
+        void open_temple();
         
         void decrease_gold(int value);
         void decrease_drunk();

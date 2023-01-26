@@ -245,3 +245,7 @@ void Player::gamblers(int value) {
     std::cin>>choice;
     
 }
+
+void Player::open_temple() {
+    temple=true;
+}

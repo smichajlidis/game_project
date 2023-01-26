@@ -8,12 +8,11 @@
 
 using namespace std;
 
-void selection(int choice, int count, int &navigation);
-
 int main() {
     
     int choice {};
     int navigation {1};
+    int priest_attitude {60};
     std::string wiersz;
     
     Player player {3, 1, 1, 1, 1500,50,false};
@@ -94,6 +93,7 @@ int main() {
                     system("cls");
                 }
                 else {
+                    std::cout<<"Nastawienie kaplana: "<<priest_attitude<<"/100\n\n";
                     srand(time(NULL));
                     std::cout<<lines.at((std::rand() % 14) + 1);
                     
@@ -106,11 +106,58 @@ int main() {
                     do{
                         std::cin>>choice;
                     } while(count<choice && choice<6 && choice!=0);
-                    switch(choice){
-                        case 1: std::cout<<"Pijemy piwko"; std::cin>>choice; break;
-                        case 2: std::cout<<"Pytam o kaplice"; std::cin>>choice; break;
-                        case 0: navigation=(navigation-navigation%10)/10; break;
-                    }
+                    do {
+                        system("cls");
+                        player.get_topbar();
+                        switch(choice){
+                            case 1: {
+                                std::cout<<"Nastawienie kaplana: "<<priest_attitude+10<<"/100\n\n";
+                                std::cout<<lines.at((std::rand() % 14) + 1);
+                                player.decrease_gold(10);
+                                std::cout<<"\n\nzloto -10\n";
+                                if(priest_attitude<=90) {
+                                    priest_attitude+=10;
+                                    std::cout<<"nastawienie kaplana +10";
+                                }
+                                else {
+                                    priest_attitude=100;
+                                    std::cout<<"kaplan juz cie kocha bezgranicznie";
+                                } 
+                                player.increase_drunk();
+                                std::cout<<"\n\nPogadane, piwo wypite, co dalej?";
+                                break;
+                                
+                            }
+                            case 2: {
+                                if(priest_attitude>=80) {
+                                    std::cout<<lines.at(18);
+                                    player.open_temple();
+                                    std::cout<<"\n\nWybierz '0', aby wrocic: ";
+                                    std::cin>>choice;
+                                }
+                                else {
+                                    std::cout<<"Nastawienie kaplana: "<<priest_attitude-20<<"/100\n\n";
+                                    std::cout<<lines.at(17);
+                                    priest_attitude-=20;
+                                    std::cout<<"\n\nnastawienie kaplana -20";
+                                }
+                                break;
+                            }
+                            case 0: navigation=(navigation-navigation%10)/10; break;
+                        }
+                        if (choice==0 || player.get_temple()==true) {
+                            navigation=(navigation-navigation%10)/10;
+                            break;
+                        }
+                        else {
+                        std::cout<<"\n\n1. Kupuje po piwie.\n";
+                        std::cout<<"2. Pytam o kaplice.\n";
+                        std::cout<<"0. Zegnam sie i odchodze.\n\n";
+                        std::cout<<"Twoj wybor: ";
+                        std::cin>>choice;
+                        if (choice==0) navigation=(navigation-navigation%10)/10;
+                        }
+                    } while (choice!=0);
                     system("cls");
                     
                     
