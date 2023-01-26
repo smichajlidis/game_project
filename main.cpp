@@ -13,7 +13,8 @@ int main() {
     int navigation {1};
     std::string wiersz;
     
-    Player player {3, 1, 1, 1, 1500};
+    Player player {3, 1, 1, 1, 1500,false};
+    
     Item miecz {"miecz",1,80,25,false,true,false,false,false};
     Item luk {"luk",1,50,15,false,true,false,true,false};
     Item zbroja_skorzana {"zbroja skorzana",1,150,30,false,false,true,false,false};
@@ -40,7 +41,6 @@ int main() {
         int count {-1};
 
         switch(navigation) {
-            
             
             case 1121: player.gamblers(5); navigation=(navigation-navigation%10)/10; system("cls"); break;
             case 1122: player.gamblers(10); navigation=(navigation-navigation%10)/10; system("cls"); break;
@@ -79,32 +79,47 @@ int main() {
                 break;
             }
             default: {
-                while (getline(plik, wiersz)){
-                    ++count;
-                    if(count>0)
-                       std::cout<<count<<". ";
-                    cout<<wiersz<<endl;
-                    if(count==0) std::cout<<"\n";
-                } 
-                if(count>-1){
-                    std::cout<<"0. Powrot\n";
-                    std::cout<<"\nCo robisz? ";
-                    do{
-                        std::cin>>choice;
-                    } while(count<choice && choice<6 && choice!=0);
-                    switch(choice){
-                        case 1: 
-                        case 2:
-                        case 3:
-                        case 4:
-                        case 5: navigation=navigation*10+choice; break;
-                        case 9: navigation=9; break;
-                        case 0: navigation=(navigation-navigation%10)/10;
-                    }
-                    system("cls");
-                }
                 
-            break;
+                switch(navigation) {
+                    case 13: {
+                        if(player.get_temple()==false) {
+                            std::cout<<"Drzwi kaplicy sa zamkniete.\n";
+                            std::cout<<"\nWybierz 0, aby wrocic: ";
+                            std::cin>>choice;
+                            navigation=(navigation-navigation%10)/10;
+                            system("cls");
+                            break;
+                        }
+                    }
+                    default: {
+                        while (getline(plik, wiersz)){
+                            ++count;
+                            if(count>0)
+                               std::cout<<count<<". ";
+                            cout<<wiersz<<endl;
+                            if(count==0) std::cout<<"\n";
+                        } 
+                        if(count>-1){
+                            std::cout<<"0. Powrot\n";
+                            std::cout<<"\nCo robisz? ";
+                            do{
+                                std::cin>>choice;
+                            } while(count<choice && choice<6 && choice!=0);
+                            switch(choice){
+                                case 1: 
+                                case 2:
+                                case 3:
+                                case 4:
+                                case 5: navigation=navigation*10+choice; break;
+                                case 9: navigation=9; break;
+                                case 0: navigation=(navigation-navigation%10)/10;
+                            }
+                        }
+                        system("cls");
+                        break;
+                    }
+                    
+                }
             }
         }
         plik.close();

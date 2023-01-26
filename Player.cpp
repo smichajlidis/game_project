@@ -45,17 +45,22 @@ int Player::get_luck() {
     return luck;
 }
 
+bool Player::get_temple() {
+    return temple;
+}
+
 Player::Player() {
     health = 100;
 }
 
-Player::Player(int health_val, int strength_val, int charisma_val, int luck_val, int gold_val) {
+Player::Player(int health_val, int strength_val, int charisma_val, int luck_val, int gold_val, bool temple_val) {
     health = health_val;
     strength = strength_val;
     charisma = charisma_val;
     luck = luck_val;
     gold = gold_val;
     drunk = 0;
+    temple = temple_val;
 }
 
 Player::~Player(){
@@ -236,7 +241,7 @@ void Player::gamblers(int value) {
         std::cout<<"\nPrzegrales\n-"<<value<<" sztuk zlota";
         decrease_gold(value);
     }
-    std::cout<<"\nWybierz 0, aby wrocic: ";
+    std::cout<<"\n\nWybierz 0, aby wrocic: ";
     std::cin>>choice;
     
 }

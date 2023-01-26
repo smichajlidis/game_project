@@ -16,6 +16,8 @@ class Player
         std::vector <Item> equipment {};
         int drunk;
         
+        bool temple;
+        
         std::vector <Item> tavern_trade {};
         
     public:
@@ -37,6 +39,8 @@ class Player
         int get_charisma();
         int get_luck();
         
+        bool get_temple();
+        
         void decrease_gold(int value);
         void decrease_drunk();
         
@@ -46,7 +50,7 @@ class Player
         void restore_health();
         
         Player();
-        Player(int health_val, int strength_val, int charisma_val, int luck_val, int gold_val);
+        Player(int health_val, int strength_val, int charisma_val, int luck_val, int gold_val, bool temple_val);
         ~Player();
 };
 
