@@ -50,7 +50,7 @@ class Player
         void restore_health();
         
         Player();
-        Player(int health_val, int strength_val, int charisma_val, int luck_val, int gold_val, bool temple_val);
+        Player(int health_val, int strength_val, int charisma_val, int luck_val, int gold_val, int drunk_val, bool temple_val);
         ~Player();
 };
 

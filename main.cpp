@@ -3,9 +3,12 @@
 #include <cstdlib>
 #include <vector>
 #include <windows.h>
+#include <ctime>
 #include "Player.h"
 
 using namespace std;
+
+void selection(int choice, int count, int &navigation);
 
 int main() {
     
@@ -13,7 +16,7 @@ int main() {
     int navigation {1};
     std::string wiersz;
     
-    Player player {3, 1, 1, 1, 1500,false};
+    Player player {3, 1, 1, 1, 1500,50,false};
     
     Item miecz {"miecz",1,80,25,false,true,false,false,false};
     Item luk {"luk",1,50,15,false,true,false,true,false};
@@ -68,7 +71,6 @@ int main() {
                         case 1141: player.restore_health(); std::cout<<"Przywrocono zdrowie\n"; break;
                         case 1221: std::cout<<"KONIEC GRY\n"; navigation=9; break;
                     }
-                    
                 }
                 else
                     std::cout<<lines.at(2)<<endl;
@@ -76,6 +78,43 @@ int main() {
                 std::cin>>choice;
                 navigation=(navigation-navigation%10)/10;
                 system("cls");
+                break;
+            }
+            case 1131: {
+                
+                std::vector <string> lines {};
+                while (getline(plik,wiersz)){
+                    lines.push_back(wiersz);
+                }
+                if (player.get_drunk()<5){
+                    std::cout<<lines.at(0);
+                    std::cout<<"\n\nNacisnij dowolny klawisz, aby wrocic: ";
+                    std::cin>>choice;
+                    navigation=(navigation-navigation%10)/10;
+                    system("cls");
+                }
+                else {
+                    srand(time(NULL));
+                    std::cout<<lines.at((std::rand() % 14) + 1);
+                    
+                    std::cout<<"\n\n1. "<<lines.at(15)<<std::endl;
+                    std::cout<<"2. "<<lines.at(16)<<std::endl;
+                    count=2;
+                    
+                    std::cout<<"0. Powrot\n";
+                    std::cout<<"\nCo robisz? ";
+                    do{
+                        std::cin>>choice;
+                    } while(count<choice && choice<6 && choice!=0);
+                    switch(choice){
+                        case 1: std::cout<<"Pijemy piwko"; std::cin>>choice; break;
+                        case 2: std::cout<<"Pytam o kaplice"; std::cin>>choice; break;
+                        case 0: navigation=(navigation-navigation%10)/10; break;
+                    }
+                    system("cls");
+                    
+                    
+                }
                 break;
             }
             default: {
@@ -126,3 +165,6 @@ int main() {
     }
     return 0;
 }
+
+
+    

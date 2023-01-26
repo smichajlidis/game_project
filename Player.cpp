@@ -53,13 +53,13 @@ Player::Player() {
     health = 100;
 }
 
-Player::Player(int health_val, int strength_val, int charisma_val, int luck_val, int gold_val, bool temple_val) {
+Player::Player(int health_val, int strength_val, int charisma_val, int luck_val, int gold_val, int drunk_val, bool temple_val) {
     health = health_val;
     strength = strength_val;
     charisma = charisma_val;
     luck = luck_val;
     gold = gold_val;
-    drunk = 0;
+    drunk = drunk_val;
     temple = temple_val;
 }
 
