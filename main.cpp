@@ -44,6 +44,7 @@ int main() {
 
         switch(navigation) {
             
+            
             case 1121: player.gamblers(5); navigation=(navigation-navigation%10)/10; system("cls"); break;
             case 1122: player.gamblers(10); navigation=(navigation-navigation%10)/10; system("cls"); break;
             case 1123: player.gamblers(25); navigation=(navigation-navigation%10)/10; system("cls"); break;
@@ -74,6 +75,28 @@ int main() {
                 else
                     std::cout<<lines.at(2)<<endl;
                 std::cout<<"\nNacisnij dowolny klawisz, aby wrocic: ";
+                std::cin>>choice;
+                navigation=(navigation-navigation%10)/10;
+                system("cls");
+                break;
+            }
+            case 1142: {
+                std::vector <string> lines {};
+                while (getline(plik,wiersz)){
+                    lines.push_back(wiersz);
+                }
+                srand(time(NULL));
+                if ((std::rand() % 35) + player.get_charisma() + player.get_drunk() + player.get_luck() >= 40) {
+                    std::cout<<lines.at((std::rand() % 4) + 5);
+                    std::cout<<"\n\nSukces!\n\ncharyzma+1";
+                    player.increase_charisma(1);
+                }
+                else {
+                    std::cout<<lines.at((std::rand() % 4));
+                    std::cout<<"\n\nLipa.\n\ncharyzma-5";
+                    player.decrease_charisma(5);
+                }
+                std::cout<<"\n\nWybierz '0', aby wrocic: ";
                 std::cin>>choice;
                 navigation=(navigation-navigation%10)/10;
                 system("cls");

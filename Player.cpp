@@ -16,6 +16,15 @@ void Player::decrease_gold(int value) {
 void Player::increase_drunk() {
     drunk+=10;
 }
+
+void Player::increase_charisma(int value) {
+    charisma+=value;
+}
+
+void Player::decrease_charisma(int value) {
+    charisma-=value;
+}
+
 void Player::restore_health() {
     health=100;
 }

@@ -49,6 +49,8 @@ class Player
         void increase_health(int value);
         void increase_gold(int value);
         void restore_health();
+        void increase_charisma(int value);
+        void decrease_charisma(int value);
         
         Player();
         Player(int health_val, int strength_val, int charisma_val, int luck_val, int gold_val, int drunk_val, bool temple_val);
