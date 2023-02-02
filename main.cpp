@@ -339,12 +339,15 @@ void chosing(int &count, fstream &plik, std::string &wiersz, int &choice, int &n
         if(count==0) std::cout<<"\n";
     } 
     if(count>-1){
-    std::cout<<"0. Powrot\n";
-    std::cout<<"\nCo robisz? ";
-    do{
-        std::cin>>choice;
-    } while(count<choice && choice<6 && choice!=0);
-    }
+        if (navigation==1214)
+            std::cout<<"0. Uciekaj\n";
+        else
+            std::cout<<"0. Powrot\n";
+        std::cout<<"\nCo robisz? ";
+        do{
+            std::cin>>choice;
+        } while(count<choice && choice<6 && choice!=0);
+        }
     if(choice==0) {
         navigation=(navigation-navigation%10)/10;
        // system("cls");
