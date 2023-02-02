@@ -5,6 +5,14 @@
 #include "Player.h"
 #include "Item.h"
 
+int Player::get_amount_of(int index) {
+    return equipment.at(index).get_amount();
+}
+
+std::string Player::get_name_of(int index) {
+    return equipment.at(index).get_name();
+}
+
 int Player::get_gold() {
     return gold;
 }

@@ -39,6 +39,9 @@ class Player
         int get_charisma();
         int get_luck();
         
+        int get_amount_of(int index);
+        std::string get_name_of(int index);
+        
         bool get_temple();
         void open_temple();
         

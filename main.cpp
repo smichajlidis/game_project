@@ -25,6 +25,7 @@ int main() {
     Item zbroja_skorzana {"zbroja skorzana",1,150,30,false,false,true,false,false};
     Item jablko {"jablko",1,3,5,true,false,false,false,false};
     Item szata {"szata",1,350,35,false,false,false,false,true};
+    Item owoce_lesne {"owoce_lesne",1,3,5,true,false,false,false,false};
     
     player.add_tavern_trade(miecz);
     player.add_tavern_trade(luk);
@@ -79,7 +80,7 @@ int main() {
                 std::cout<<"\nNacisnij dowolny klawisz, aby wrocic: ";
                 std::cin>>choice;
                 navigation=(navigation-navigation%10)/10;
-                system("cls");
+               // system("cls");
                 break;
             }
             case 1211: {
@@ -90,6 +91,27 @@ int main() {
                 }
                 break;
                 
+            }
+            case 1212: {
+                chosing(count, plik, wiersz, choice, navigation);
+                    if (choice==1) {
+                        int amount {std::rand()%9+1};
+                        std::cout<<"\nOwoce lesne +"<<amount;
+                        while(amount) {
+                            player.add_equipment(owoce_lesne);
+                            --amount;
+                        }
+                        navigation=(navigation-navigation%10)/10;
+                    }
+                    else {
+                        navigation=(navigation-navigation%10)/10;
+                        navigation=navigation*10+(std::rand()%4)+1;
+                    }
+                    std::cout<<"\n\nNacisnij dowolny klawisz, aby wrocic: ";
+                    std::cin>>choice;
+                    navigation=(navigation-navigation%10)/10;
+                    break;
+                        
             }
             case 1142: {
                 std::vector <string> lines {};
