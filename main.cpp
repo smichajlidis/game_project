@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void chosing (int &count, fstream &plik, std::string &wiersz, int &choice);
+void chosing (int &count, fstream &plik, std::string &wiersz, int &choice, int &navigation);
 
 int main() {
     
@@ -82,9 +82,7 @@ int main() {
                 break;
             }
             case 1211: {
-                chosing(count, plik, wiersz, choice);
-                std::cout<<"Kurde chyba dziala";
-                std::cin>>choice;
+                chosing(count, plik, wiersz, choice, navigation);
                 break;
                 
             }
@@ -208,19 +206,8 @@ int main() {
                         }
                     }
                     default: {
-                        while (getline(plik, wiersz)){
-                            ++count;
-                            if(count>0)
-                               std::cout<<count<<". ";
-                            cout<<wiersz<<endl;
-                            if(count==0) std::cout<<"\n";
-                        } 
+                        chosing(count, plik, wiersz, choice, navigation);
                         if(count>-1){
-                            std::cout<<"0. Powrot\n";
-                            std::cout<<"\nCo robisz? ";
-                            do{
-                                std::cin>>choice;
-                            } while(count<choice && choice<6 && choice!=0);
                             if (navigation==121 && choice!=0) {
                                 navigation=navigation*10+(std::rand()%4)+1;
                             }
@@ -232,7 +219,8 @@ int main() {
                                     case 4:
                                     case 5: navigation=navigation*10+choice; break;
                                     case 9: navigation=9; break;
-                                    case 0: navigation=(navigation-navigation%10)/10;
+                                    default: break;
+                                   // case 0: navigation=(navigation-navigation%10)/10;
                                 }
                             }
                         }
@@ -248,7 +236,7 @@ int main() {
     return 0;
 }
 
-void chosing(int &count, fstream &plik, std::string &wiersz, int &choice) {
+void chosing(int &count, fstream &plik, std::string &wiersz, int &choice, int &navigation) {
     while (getline(plik, wiersz)){
         ++count;
         if(count>0)
@@ -262,6 +250,10 @@ void chosing(int &count, fstream &plik, std::string &wiersz, int &choice) {
     do{
         std::cin>>choice;
     } while(count<choice && choice<6 && choice!=0);
+    }
+    if(choice==0) {
+        navigation=(navigation-navigation%10)/10;
+        system("cls");
     }
 }
     
