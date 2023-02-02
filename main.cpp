@@ -36,6 +36,7 @@ int main() {
 
     while(navigation!=9 && navigation!=0){
 
+        system("cls");
         player.decrease_drunk();
         player.get_topbar();
         
@@ -83,6 +84,10 @@ int main() {
             }
             case 1211: {
                 chosing(count, plik, wiersz, choice, navigation);
+                if (choice==1) {
+                    navigation=(navigation-navigation%10)/10;
+                    navigation=navigation*10+(std::rand()%4)+1;
+                }
                 break;
                 
             }
@@ -224,7 +229,7 @@ int main() {
                                 }
                             }
                         }
-                        system("cls");
+                       // system("cls");
                         break;
                     }
                     
