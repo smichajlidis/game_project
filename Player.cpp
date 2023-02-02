@@ -5,6 +5,14 @@
 #include "Player.h"
 #include "Item.h"
 
+bool Player::checking_equipment(std::string name) {
+    for (auto i: equipment){
+        if (i.get_name() == name)
+            return true;
+    }
+    return false;
+}
+
 int Player::get_amount_of(int index) {
     return equipment.at(index).get_amount();
 }

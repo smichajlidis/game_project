@@ -26,6 +26,7 @@ int main() {
     Item jablko {"jablko",1,3,5,true,false,false,false,false};
     Item szata {"szata",1,350,35,false,false,false,false,true};
     Item owoce_lesne {"owoce_lesne",1,3,5,true,false,false,false,false};
+   // player.add_equipment(luk);
     
     player.add_tavern_trade(miecz);
     player.add_tavern_trade(luk);
@@ -90,28 +91,55 @@ int main() {
                     navigation=navigation*10+(std::rand()%4)+1;
                 }
                 break;
-                
             }
             case 1212: {
                 chosing(count, plik, wiersz, choice, navigation);
-                    if (choice==1) {
-                        int amount {std::rand()%9+1};
-                        std::cout<<"\nOwoce lesne +"<<amount;
-                        while(amount) {
-                            player.add_equipment(owoce_lesne);
-                            --amount;
+                    switch (choice) {
+                        case 1: {
+                            int amount {std::rand()%9+1};
+                            std::cout<<"\nOwoce lesne +"<<amount;
+                            while(amount) {
+                                player.add_equipment(owoce_lesne);
+                                --amount;
+                            }
+                            std::cout<<"\n\nNacisnij dowolny klawisz, aby wrocic: ";
+                            std::cin>>choice;
+                            navigation=(navigation-navigation%10)/10;
+                            break;
+                            }
+                        case 2: {
+                            navigation=(navigation-navigation%10)/10;
+                            navigation=navigation*10+(std::rand()%4)+1;
+                            break;
                         }
-                        navigation=(navigation-navigation%10)/10;
+                        default: break; 
+                        
                     }
-                    else {
+                break;
+            }
+            case 1213: {
+                chosing(count, plik, wiersz, choice, navigation);
+                switch(choice) {
+                    case 1: {
+                        if (player.checking_equipment("luk")==false) {
+                            std::cout<<"\nNie masz czym polowac. Co, chcesz kamieniami rzucac?";
+                            std::cout<<"\n\nNacisnij dowolny klawisz, aby wrocic: ";
+                           // std::cin>>choice;
+                            navigation=(navigation-navigation%10)/10;
+                        }
+                        else
+                            std::cout<<"Polowanie";
+                        cin>>choice;
+                        break;
+                    }
+                    case 2: {
                         navigation=(navigation-navigation%10)/10;
                         navigation=navigation*10+(std::rand()%4)+1;
+                        break;
                     }
-                    std::cout<<"\n\nNacisnij dowolny klawisz, aby wrocic: ";
-                    std::cin>>choice;
-                    navigation=(navigation-navigation%10)/10;
-                    break;
-                        
+                    default: break;
+                }
+                break;
             }
             case 1142: {
                 std::vector <string> lines {};
@@ -280,7 +308,7 @@ void chosing(int &count, fstream &plik, std::string &wiersz, int &choice, int &n
     }
     if(choice==0) {
         navigation=(navigation-navigation%10)/10;
-        system("cls");
+       // system("cls");
     }
 }
     
