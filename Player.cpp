@@ -156,6 +156,7 @@ void Player::display_tavern_trade() {
                     std::cout<<count<<". "<<i.get_name()<<" Ilosc: "<<i.get_amount()<<" Wlasciwosc: "<<i.get_feature()<<"+"<<i.get_value()<<" Cena: "<<i.get_price()<<std::endl;
                     ++count;
                 }
+                std::cout<<"\n0. Powrot\n";
                 std::cout<<"\nTo co bys chcial? ";
                 do {
                     std::cin>>choice;
@@ -190,6 +191,7 @@ void Player::display_tavern_trade() {
                     std::cout<<count<<". "<<i.get_name()<<" Ilosc: "<<i.get_amount()<<" Wlasciwosc: "<<i.get_feature()<<"+"<<i.get_value()<<" Cena: "<<i.get_price()<<std::endl;
                     ++count;
                 }
+                std::cout<<"\n0. Powrot\n";
                 std::cout<<"\nTo co bys chcial sprzedac? ";
                 do {
                     std::cin>>choice;
