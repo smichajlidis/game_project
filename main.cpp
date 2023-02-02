@@ -22,11 +22,14 @@ int main() {
     
     Item miecz {"miecz",1,80,25,false,true,false,false,false};
     Item luk {"luk",1,50,15,false,true,false,true,false};
-    Item zbroja_skorzana {"zbroja skorzana",1,150,30,false,false,true,false,false};
+    Item zbroja_skorzana {"zbroja_skorzana",1,150,30,false,false,true,false,false};
     Item jablko {"jablko",1,3,5,true,false,false,false,false};
     Item szata {"szata",1,350,35,false,false,false,false,true};
     Item owoce_lesne {"owoce_lesne",1,3,5,true,false,false,false,false};
-   // player.add_equipment(luk);
+    Item skora {"skora", 1,45,0,false,false,false,false,false};
+    Item surowe_mieso {"surowe_mieso", 1,17,0,false,false,false,false,false};
+    
+    player.add_equipment(luk);
     
     player.add_tavern_trade(miecz);
     player.add_tavern_trade(luk);
@@ -124,12 +127,48 @@ int main() {
                         if (player.checking_equipment("luk")==false) {
                             std::cout<<"\nNie masz czym polowac. Co, chcesz kamieniami rzucac?";
                             std::cout<<"\n\nNacisnij dowolny klawisz, aby wrocic: ";
-                           // std::cin>>choice;
+                            std::cin>>choice;
                             navigation=(navigation-navigation%10)/10;
                         }
-                        else
-                            std::cout<<"Polowanie";
-                        cin>>choice;
+                        else {
+                            do {
+                                system("cls");
+                                player.get_topbar();
+                            switch(std::rand()%4+1) {
+                                case 1: {
+                                    std::cout<<"Trafiles i upolowales";
+                                    std::cout<<"\n\n+1 surowe mieso\n+1 skora";
+                                    std::cout<<"\n\nNacisnij dowolny klawisz, aby wrocic: ";
+                                    player.add_equipment(surowe_mieso);
+                                    player.add_equipment(skora);
+                                    std::cin>>choice;
+                                    navigation=(navigation-navigation%10)/10;
+                                    break;
+                                }
+                                case 2: {
+                                    std::cout<<"Nie trafiles, ale zwierze sie nie sploszylo";
+                                    std::cout<<"\n\n1. Probuj jeszcze raz";
+                                    std::cout<<"\n0. Powrot";
+                                    std::cout<<"\n\nCo robisz? ";
+                                    std::cin>>choice;
+                                    switch (choice) {
+                                        case 1: break;
+                                        case 2: navigation=(navigation-navigation%10)/10; break;
+                                    }
+                                    break;
+                                }
+                                case 3: {
+                                    std::cout<<"Nie trafiles i zwierze ucieklo";
+                                    std::cout<<"\n\nNacisnij dowolny klawisz, aby wrocic: ";
+                                    std::cin>>choice;
+                                    navigation=(navigation-navigation%10)/10;
+                                    break;
+                                }
+                                default: break;
+                            }
+                            
+                            } while (choice == 1);
+                        }
                         break;
                     }
                     case 2: {

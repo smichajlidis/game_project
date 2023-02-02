@@ -144,7 +144,7 @@ void Player::display_tavern_trade() {
     std::cout<<"\nTwoj wybor: ";
     std::cin>>choice;
     do {
-        if (choice==0) break;
+       // if (choice==0) break;
         system("cls");
         get_topbar();
         switch (choice) {
@@ -160,25 +160,27 @@ void Player::display_tavern_trade() {
                 do {
                     std::cin>>choice;
                 } while (choice>=count);
-                if ((tavern_trade.at(choice-1)).get_amount()>1) {
+                if (choice!=0 && (tavern_trade.at(choice-1)).get_amount()>1) {
                     
                     std::cout<<"Ile sztuk potrzebujesz? ";
                     std::cin>>amount;
                 }
                 system("cls");
                 get_topbar();
-                std::cout<<"Prosze bardzo\n\n"<<"Zloto -"<<(tavern_trade.at(choice-1)).get_price()*amount;
+                if (choice!=0) {
+                    std::cout<<"Prosze bardzo\n\n"<<"Zloto -"<<(tavern_trade.at(choice-1)).get_price()*amount;
                 
-                while(amount) {
-                    std::cout<<"\n+"<<(tavern_trade.at(choice-1)).get_name();
-                    add_equipment(tavern_trade.at(choice-1));
-                    decrease_gold((tavern_trade.at(choice-1)).get_price());
-                    remove_tavern_trade(tavern_trade.at(choice-1));
-                    --amount;
+                    while(amount) {
+                        std::cout<<"\n+"<<(tavern_trade.at(choice-1)).get_name();
+                        add_equipment(tavern_trade.at(choice-1));
+                        decrease_gold((tavern_trade.at(choice-1)).get_price());
+                        remove_tavern_trade(tavern_trade.at(choice-1));
+                        --amount;
+                    }
+                    std::cout<<"\nCos jeszcze?\n\n1. Chce teraz cos kupic.\n2. Chce jeszcze cos sprzedac.\n0. Powrot";
+                    std::cout<<"\n\nTwoj wybor: ";
+                    std::cin>>choice;
                 }
-                std::cout<<"\nCos jeszcze?\n\n1. Chce teraz cos kupic.\n2. Chce jeszcze cos sprzedac.\n0. Powrot";
-                std::cout<<"\n\nTwoj wybor: ";
-                std::cin>>choice;
                 break;
             }
             case 2: {
@@ -192,27 +194,30 @@ void Player::display_tavern_trade() {
                 do {
                     std::cin>>choice;
                 } while (choice>=count);
-                if ((equipment.at(choice-1)).get_amount()>1) {
+                if (choice!=0 && (equipment.at(choice-1)).get_amount()>1) {
                     
                     std::cout<<"Ile sztuk chcesz sprzedac? ";
                     std::cin>>amount;
                 }
                 system("cls");
                 get_topbar();
-                std::cout<<"Prosze bardzo!\n\n"<<"Zloto +"<<(equipment.at(choice-1)).get_price()*amount;
-                
-                while(amount) {
-                    std::cout<<"\n-"<<(equipment.at(choice-1)).get_name();
-                    add_tavern_trade(equipment.at(choice-1));
-                    increase_gold((equipment.at(choice-1)).get_price());
-                    remove_equipment(equipment.at(choice-1));
-                    --amount;
+                if (choice!=0) {
+                    std::cout<<"Prosze bardzo!\n\n"<<"Zloto +"<<(equipment.at(choice-1)).get_price()*amount;
+                    
+                    while(amount) {
+                        std::cout<<"\n-"<<(equipment.at(choice-1)).get_name();
+                        add_tavern_trade(equipment.at(choice-1));
+                        increase_gold((equipment.at(choice-1)).get_price());
+                        remove_equipment(equipment.at(choice-1));
+                        --amount;
+                    }
+                    std::cout<<"\n\nCos jeszcze?\n\n1. Chce teraz cos kupic.\n2. Mam cos jeszcze do sprzedania.\n0. Powrot";
+                    std::cout<<"\n\nTwoj wybor: ";
+                    std::cin>>choice;
                 }
-                std::cout<<"\n\nCos jeszcze?\n\n1. Chce kupic cos jeszcze.\n2. Chce teraz cos sprzedac.\n0. Powrot";
-                std::cout<<"\n\nTwoj wybor: ";
-                std::cin>>choice;
                 break;
             }
+            default: break;
         }
     } while (choice!=0);
 }
