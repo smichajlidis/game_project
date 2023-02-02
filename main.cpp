@@ -14,6 +14,7 @@ int main() {
     int navigation {1};
     int priest_attitude {60};
     std::string wiersz;
+    srand(time(NULL));
     
     Player player {3, 1, 1, 1, 1500,50,false};
     
@@ -85,7 +86,6 @@ int main() {
                 while (getline(plik,wiersz)){
                     lines.push_back(wiersz);
                 }
-                srand(time(NULL));
                 if ((std::rand() % 35) + player.get_charisma() + player.get_drunk() + player.get_luck() >= 40) {
                     std::cout<<lines.at((std::rand() % 4) + 5);
                     std::cout<<"\n\nSukces!\n\ncharyzma+1";
@@ -214,14 +214,19 @@ int main() {
                             do{
                                 std::cin>>choice;
                             } while(count<choice && choice<6 && choice!=0);
-                            switch(choice){
-                                case 1: 
-                                case 2:
-                                case 3:
-                                case 4:
-                                case 5: navigation=navigation*10+choice; break;
-                                case 9: navigation=9; break;
-                                case 0: navigation=(navigation-navigation%10)/10;
+                            if (navigation==121 && choice!=0) {
+                                navigation=navigation*10+(std::rand()%4)+1;
+                            }
+                            else {
+                                switch(choice){
+                                    case 1: 
+                                    case 2:
+                                    case 3:
+                                    case 4:
+                                    case 5: navigation=navigation*10+choice; break;
+                                    case 9: navigation=9; break;
+                                    case 0: navigation=(navigation-navigation%10)/10;
+                                }
                             }
                         }
                         system("cls");
