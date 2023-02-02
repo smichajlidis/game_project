@@ -8,6 +8,8 @@
 
 using namespace std;
 
+void chosing (int &count, fstream &plik, std::string &wiersz, int &choice);
+
 int main() {
     
     int choice {};
@@ -44,8 +46,6 @@ int main() {
         int count {-1};
 
         switch(navigation) {
-            
-            
             case 1121: player.gamblers(5); navigation=(navigation-navigation%10)/10; system("cls"); break;
             case 1122: player.gamblers(10); navigation=(navigation-navigation%10)/10; system("cls"); break;
             case 1123: player.gamblers(25); navigation=(navigation-navigation%10)/10; system("cls"); break;
@@ -80,6 +80,13 @@ int main() {
                 navigation=(navigation-navigation%10)/10;
                 system("cls");
                 break;
+            }
+            case 1211: {
+                chosing(count, plik, wiersz, choice);
+                std::cout<<"Kurde chyba dziala";
+                std::cin>>choice;
+                break;
+                
             }
             case 1142: {
                 std::vector <string> lines {};
@@ -241,5 +248,20 @@ int main() {
     return 0;
 }
 
-
+void chosing(int &count, fstream &plik, std::string &wiersz, int &choice) {
+    while (getline(plik, wiersz)){
+        ++count;
+        if(count>0)
+        std::cout<<count<<". ";
+        cout<<wiersz<<endl;
+        if(count==0) std::cout<<"\n";
+    } 
+    if(count>-1){
+    std::cout<<"0. Powrot\n";
+    std::cout<<"\nCo robisz? ";
+    do{
+        std::cin>>choice;
+    } while(count<choice && choice<6 && choice!=0);
+    }
+}
     

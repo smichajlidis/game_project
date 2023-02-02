@@ -1,1 +1,3 @@
-Znalazles owoce lesne.
+Znalazles owoce lesne. Chcesz je zebrać?
+Tak.
+Nie.
