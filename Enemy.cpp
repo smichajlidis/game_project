@@ -3,6 +3,10 @@
 #include "Enemy.h"
 #include "Item.h"
 
+std::string Enemy::get_name() {
+    return name;
+}
+
 void Enemy::add_equipment(Item object) {
     equipment.push_back(object);
 }

@@ -30,9 +30,23 @@ int main() {
     Item skora {"skora", 1,45,0,false,false,false,false,false};
     Item surowe_mieso {"surowe_mieso", 1,17,0,false,false,false,false,false};
     
+    std::vector <Enemy> forest_enemy {};
+    std::vector <Enemy> cellar_enemy {};
+    
     Enemy wilk {"wilk", 100, 15, true, false};
     wilk.add_equipment(skora);
-    wilk.add_equipment(surowe_mieso);
+    forest_enemy.push_back(wilk);
+    Enemy goblin {"goblin", 100, 25, true, true};
+    goblin.add_equipment(miecz);
+    forest_enemy.push_back(goblin);
+    cellar_enemy.push_back(goblin);
+    Enemy bandyta {"bandyta", 100, 30, true, false};
+    bandyta.add_equipment(zbroja_skorzana);
+    bandyta.add_equipment(jablko);
+    forest_enemy.push_back(bandyta);
+    
+    
+    
     
     player.add_equipment(luk);
     
@@ -182,6 +196,16 @@ int main() {
                         break;
                     }
                     default: break;
+                }
+                break;
+            }
+            case 1214: {
+                std::cout<<"Zaatakowal cie "<<forest_enemy.at(rand()%forest_enemy.size()).get_name()<<"!\n";
+                std::cout<<"\n1. Walcz\n0. Uciekaj\n\nCo robisz? ";
+                std::cin>>choice;
+                switch(choice) {
+                    case 0: navigation=(navigation-navigation%10)/10; break;
+                    case 1: cout<<"no to walka!"; break;
                 }
                 break;
             }
@@ -339,7 +363,7 @@ void chosing(int &count, fstream &plik, std::string &wiersz, int &choice, int &n
     while (getline(plik, wiersz)){
         ++count;
         if(count>0)
-        std::cout<<count<<". ";
+            std::cout<<count<<". ";
         cout<<wiersz<<endl;
         if(count==0) std::cout<<"\n";
     } 

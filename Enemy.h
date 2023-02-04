@@ -17,6 +17,8 @@ public:
 
     void add_equipment(Item object);
     
+    std::string get_name();
+    
     Enemy(std::string name_val, int health_val, int strength_val, bool forest_val, bool cellar_val);
     ~Enemy();
 };
