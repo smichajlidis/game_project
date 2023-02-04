@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <ctime>
 #include "Player.h"
+#include "Enemy.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ int main() {
     std::string wiersz;
     srand(time(NULL));
     
-    Player player {3, 1, 1, 1, 1500,50,false};
+    Player player {3, 1, 1, 1, 1500,0,false};
     
     Item miecz {"miecz",1,80,25,false,true,false,false,false};
     Item luk {"luk",1,50,15,false,true,false,true,false};
@@ -28,6 +29,10 @@ int main() {
     Item owoce_lesne {"owoce_lesne",1,3,5,true,false,false,false,false};
     Item skora {"skora", 1,45,0,false,false,false,false,false};
     Item surowe_mieso {"surowe_mieso", 1,17,0,false,false,false,false,false};
+    
+    Enemy wilk {"wilk", 100, 15, true, false};
+    wilk.add_equipment(skora);
+    wilk.add_equipment(surowe_mieso);
     
     player.add_equipment(luk);
     
