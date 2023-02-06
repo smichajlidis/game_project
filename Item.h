@@ -15,6 +15,7 @@ class Item
         bool hunting;
         bool clothing;
         
+        
     public:
         std::string get_name();
         int get_amount();
@@ -26,7 +27,7 @@ class Item
         void decrease_amount(int value);
         void set_amount(int value);
         
-        Item(std::string name_val, int amount_val, int price_val, int value_val, bool food_val, bool weapon_val, bool armor_val, bool hunting_val, bool clothing_val);
+        Item(std::string name_val="none", int price_val=0, int value_val=0, bool food_val=0, bool weapon_val=false, bool armor_val=false, bool hunting_val=false, bool clothing_val=false, int amount_val = 1);
         ~Item();
 };
 

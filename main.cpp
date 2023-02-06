@@ -6,6 +6,7 @@
 #include <ctime>
 #include "Player.h"
 #include "Enemy.h"
+#include "Item.h"
 
 using namespace std;
 
@@ -21,14 +22,14 @@ int main() {
     
     Player player {3, 1, 1, 1, 1500,0,false};
     
-    Item miecz {"miecz",1,80,25,false,true,false,false,false};
-    Item luk {"luk",1,50,15,false,true,false,true,false};
-    Item zbroja_skorzana {"zbroja_skorzana",1,150,30,false,false,true,false,false};
-    Item jablko {"jablko",1,3,5,true,false,false,false,false};
-    Item szata {"szata",1,350,35,false,false,false,false,true};
-    Item owoce_lesne {"owoce_lesne",1,3,5,true,false,false,false,false};
-    Item skora {"skora", 1,45,0,false,false,false,false,false};
-    Item surowe_mieso {"surowe_mieso", 1,17,0,false,false,false,false,false};
+    Item miecz {"miecz",80,25,false,true};
+    Item luk {"luk",50,15,false,true,false,true,false};
+    Item zbroja_skorzana {"zbroja_skorzana",150,30,false,false,true};
+    Item jablko {"jablko",3,5,true};
+    Item szata {"szata",350,35,false,false,false,false,true};
+    Item owoce_lesne {"owoce_lesne",3,5,true};
+    Item skora {"skora",45};
+    Item surowe_mieso {"surowe_mieso",17};
     
     std::vector <Enemy> forest_enemy {};
     std::vector <Enemy> cellar_enemy {};
@@ -207,6 +208,7 @@ int main() {
                     case 0: navigation=(navigation-navigation%10)/10; break;
                     case 1: cout<<"no to walka!"; break;
                 }
+                
                 break;
             }
             case 1142: {
