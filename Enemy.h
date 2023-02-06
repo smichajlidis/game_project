@@ -8,18 +8,18 @@ class Enemy {
     
 private:
     std::string name {};
-    int health {};
     int strength {};
     std::vector <Item> equipment {};
     bool forest {};
     bool cellar {};
+    int health {};
 public:
 
     void add_equipment(Item object);
     
     std::string get_name();
     
-    Enemy(std::string name_val, int health_val, int strength_val, bool forest_val, bool cellar_val);
+    Enemy(std::string name_val = "none", int strength_val = 10, bool forest_val = true, bool cellar_val = true, int health_val = 100);
     ~Enemy();
 };
 

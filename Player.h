@@ -6,18 +6,17 @@
 
 class Player
 {
-    private:
-        int health;
-        int strength;
-        int charisma;
-        int luck;
-        int gold;
-        std::vector <Item> equipment {};
-        int drunk;
-        
-        bool temple;
-        
-        std::vector <Item> tavern_trade {};
+private:
+
+    int gold;
+    int strength;
+    int charisma;
+    int luck;
+    std::vector <Item> equipment {};
+    int drunk;
+    bool temple;
+    int health;
+    std::vector <Item> tavern_trade {};
         
     public:
 
@@ -57,7 +56,7 @@ class Player
         void decrease_charisma(int value);
         
         Player();
-        Player(int health_val, int strength_val, int charisma_val, int luck_val, int gold_val, int drunk_val, bool temple_val);
+        Player(int gold_val = 0, int strength_val = 20, int charisma_val = 20, int luck_val = 10, int drunk_val = false, bool temple_val = false, int health_val = 100);
         ~Player();
 };
 

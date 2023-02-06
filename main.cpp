@@ -20,7 +20,7 @@ int main() {
     std::string wiersz;
     srand(time(NULL));
     
-    Player player {3, 1, 1, 1, 1500,0,false};
+    Player player {1500};
     
     Item miecz {"miecz",80,25,false,true};
     Item luk {"luk",50,15,false,true,false,true,false};
@@ -34,10 +34,10 @@ int main() {
     std::vector <Enemy> forest_enemy {};
     std::vector <Enemy> cellar_enemy {};
     
-    Enemy wilk {"wilk", 100, 15, true, false};
+    Enemy wilk {"wilk", 15, true, false};
     wilk.add_equipment(skora);
     forest_enemy.push_back(wilk);
-    Enemy goblin {"goblin", 100, 25, true, true};
+    Enemy goblin {"goblin", 100, 25};
     goblin.add_equipment(miecz);
     forest_enemy.push_back(goblin);
     cellar_enemy.push_back(goblin);
