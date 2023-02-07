@@ -431,11 +431,17 @@ void fight(Player &player, Enemy enemy) {
     } while (player.health>0 && enemy.health>0);
     
     if (player.health <= 0) {
-        std::cout<<"Przegrales...";
+        std::cout<<"\nPrzegrales...";
     }
-    else
-        std::cout<<"Wygrales!";
-    
+    else {
+        std::cout<<"\nWygrales!\n\n";
+        player.strength++;
+        for(auto i: enemy.equipment) {
+            (player.equipment).push_back(i);
+            cout<<i.get_name()<<" +"<<i.get_amount()<<"\n";
+        }
+        std::cout<<"Sila +1";
+    }
     std::cin>>any_key;
     
     
