@@ -390,4 +390,40 @@ void fight(Player &player, Enemy enemy) {
     int choice;
     std::cout<<"Rozpoczyna sie walka miedzy toba a przeciwnikiem o nazwie "<<enemy.name;
     std::cin>>choice;
+    
+    do {
+        system("cls");
+        std::cout<<"Twoje hp: "<<player.health<<"/100\n";
+        std::cout<<"Hp "<<enemy.name<<"a: "<<enemy.health<<"/100\n\n";
+        int rand = std::rand()%2;
+        
+        if (rand == 1) {
+            int damage {std::rand()%(enemy.strength - player.strength/2)};
+            player.health-=damage;
+            std::cout<<enemy.name<<" trafil i tracisz "<<damage<<" zycia.\n";
+        }
+        else
+            std::cout<<enemy.name<<" nie trafia.\n";
+        
+        rand=std::rand()%2;
+        
+        if (rand == 1) {
+            int damage {std::rand()%(player.strength - enemy.strength/2)};
+            enemy.health-=damage;
+            std::cout<<enemy.name<<" obrywa i traci "<<damage<<" zycia.\n";
+        }
+        else
+            std::cout<<enemy.name<<" zrobil unik.\n";
+        std::cin>>choice;
+        
+    } while (player.health>0 || enemy.health>0);
+    
+    if (player.health <= 0) {
+        std::cout<<"Przegrales!";
+    }
+    else
+        std::cout<<"Wygrales!";
+    
+    std::cin>>choice;
+    
 }
