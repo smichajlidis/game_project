@@ -365,7 +365,7 @@ int main() {
         
     }
     system("cls");
-    std::cout<<"\nKONIEC GRY\n\n";
+    std::cout<<"\nKONIEC GRY\n";
     return 0;
 }
 
@@ -394,46 +394,49 @@ void chosing(int &count, fstream &plik, std::string &wiersz, int &choice, int &n
 }
     
 void fight(Player &player, Enemy enemy) {
-    int choice;
-    std::cout<<"\nRozpoczyna sie walka miedzy toba a przeciwnikiem o nazwie "<<enemy.name;
-    std::cin>>choice;
     
+    int any_key;
+    bool my_turn {false};
+
     do {
         system("cls");
         std::cout<<"Twoje hp: "<<player.health<<"/100\n";
         std::cout<<"Hp "<<enemy.name<<"a: "<<enemy.health<<"/100\n\n";
+        
         int rand = std::rand()%2;
         
-        if (rand == 1) {
-            int damage {std::rand()%(enemy.strength - player.strength/2)};
-            player.health-=damage;
-            std::cout<<enemy.name<<" trafil i tracisz "<<damage<<" zycia.\n";
+        if (my_turn == false) {
+        
+            if (rand == 1) {
+                int damage {std::rand()%(enemy.strength - player.strength/2)};
+                player.health-=damage;
+                std::cout<<enemy.name<<" trafil i tracisz "<<damage<<" zycia.\n";
+            }
+            else
+                std::cout<<enemy.name<<" nie trafia.\n";
+            my_turn=true;
+            std::cin>>any_key;
         }
-        else
-            std::cout<<enemy.name<<" nie trafia.\n";
-            
-        std::cin>>choice;
-        
-        rand=std::rand()%2;
-        
-        if (rand == 1) {
-            int damage {std::rand()%(player.strength - enemy.strength/2)};
-            enemy.health-=damage;
-            std::cout<<enemy.name<<" obrywa i traci "<<damage<<" zycia.\n";
+        else {
+            if (rand == 1) {
+                int damage {std::rand()%(player.strength - enemy.strength/2)};
+                enemy.health-=damage;
+                std::cout<<enemy.name<<" obrywa i traci "<<damage<<" zycia.\n";
+            }
+            else
+                std::cout<<enemy.name<<" zrobil unik.\n";
+            my_turn=false;
+            std::cin>>any_key;
         }
-        else
-            std::cout<<enemy.name<<" zrobil unik.\n";
-        std::cin>>choice;
-        
     } while (player.health>0 && enemy.health>0);
     
     if (player.health <= 0) {
-        std::cout<<"Przegrales!";
+        std::cout<<"Przegrales...";
     }
     else
         std::cout<<"Wygrales!";
     
-    std::cin>>choice;
+    std::cin>>any_key;
     
     
 }
