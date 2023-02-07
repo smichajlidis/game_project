@@ -56,7 +56,6 @@ class Player
         void increase_charisma(int value);
         void decrease_charisma(int value);
         
-        Player();
         Player(int gold_val = 0, int strength_val = 20, int charisma_val = 20, int luck_val = 10, int drunk_val = false, bool temple_val = false, int health_val = 100);
         ~Player();
 };

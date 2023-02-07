@@ -36,14 +36,14 @@ int main() {
     std::vector <Enemy> forest_enemy {};
     std::vector <Enemy> cellar_enemy {};
     
-    Enemy wilk {"wilk", 15, true, false};
+    Enemy wilk {"wilk", 8, true, false};
     wilk.add_equipment(skora);
     forest_enemy.push_back(wilk);
-    Enemy goblin {"goblin", 100, 25};
+    Enemy goblin {"goblin", 15, true, false};
     goblin.add_equipment(miecz);
     forest_enemy.push_back(goblin);
     cellar_enemy.push_back(goblin);
-    Enemy bandyta {"bandyta", 100, 30, true, false};
+    Enemy bandyta {"bandyta", 25, true, false};
     bandyta.add_equipment(zbroja_skorzana);
     bandyta.add_equipment(jablko);
     forest_enemy.push_back(bandyta);
@@ -388,7 +388,7 @@ void chosing(int &count, fstream &plik, std::string &wiersz, int &choice, int &n
     
 void fight(Player &player, Enemy enemy) {
     int choice;
-    std::cout<<"Rozpoczyna sie walka miedzy toba a przeciwnikiem o nazwie "<<enemy.name;
+    std::cout<<"\nRozpoczyna sie walka miedzy toba a przeciwnikiem o nazwie "<<enemy.name;
     std::cin>>choice;
     
     do {
@@ -404,6 +404,8 @@ void fight(Player &player, Enemy enemy) {
         }
         else
             std::cout<<enemy.name<<" nie trafia.\n";
+            
+        std::cin>>choice;
         
         rand=std::rand()%2;
         
@@ -416,7 +418,7 @@ void fight(Player &player, Enemy enemy) {
             std::cout<<enemy.name<<" zrobil unik.\n";
         std::cin>>choice;
         
-    } while (player.health>0 || enemy.health>0);
+    } while (player.health>0 && enemy.health>0);
     
     if (player.health <= 0) {
         std::cout<<"Przegrales!";
