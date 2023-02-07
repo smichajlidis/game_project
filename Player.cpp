@@ -227,12 +227,16 @@ void Player::add_equipment(Item object) {
 }
 
 void Player::get_topbar() {
-    std::cout<<"Zdrowie: "<<get_health(); if(get_drunk()>0) std::cout<<" -"<<get_drunk()*2;
-        std::cout<<" || Zloto: "<<get_gold();
-        std::cout<<" || Sila: "<<get_strength(); if(get_drunk()>0) std::cout<<" +"<<get_drunk();
-        std::cout<<" || Charyzma: "<<get_charisma(); if(get_drunk()>0) std::cout<<" +"<<get_drunk();
-        std::cout<<" || Szczescie: "<<get_luck(); if(get_drunk()>0) std::cout<<" +"<<get_drunk()/2;
-        std::cout<<"\n\n";
+    std::cout<<"________________________________________________________________________\n";
+    std::cout<<"\n      Ekwipunek <6> | Wczytaj <7> | Zapisz <8> | Wyjscie <9>\n";
+    std::cout<<"________________________________________________________________________\n\n";
+  //  std::cout<<"------------------------------------------------------------------------\n\n";
+    std::cout<<" Zdrowie: "<<get_health(); if(get_drunk()>0) std::cout<<" -"<<get_drunk()*2;
+    std::cout<<" | Zloto: "<<get_gold();
+    std::cout<<" | Sila: "<<get_strength(); if(get_drunk()>0) std::cout<<" +"<<get_drunk();
+    std::cout<<" | Charyzma: "<<get_charisma(); if(get_drunk()>0) std::cout<<" +"<<get_drunk();
+    std::cout<<" | Szczescie: "<<get_luck(); if(get_drunk()>0) std::cout<<" +"<<get_drunk()/2;
+    std::cout<<"\n\n";
 }
 
 void Player::gamblers(int value) {
@@ -270,4 +274,22 @@ void Player::gamblers(int value) {
 
 void Player::open_temple() {
     temple=true;
+}
+
+void Player::display_equipment() {
+    
+    int count {1};
+    int choice {};
+    
+    std::cout<<"Ekwipunek\n\n";
+    for(auto i: equipment) {
+        std::cout<<count<<". "<<i.get_name()<<" Ilosc: "<<i.get_amount()<<" Wlasciwosc: "<<i.get_feature()<<"+"<<i.get_value()<<" Cena: "<<i.get_price()<<std::endl;
+        ++count;
+    }
+    std::cout<<"\n0. Powrot\n";
+    std::cout<<"\nTo co robimy? ";
+    do {
+        std::cin>>choice;
+    } while (choice>=count);
+    system("cls");
 }

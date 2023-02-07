@@ -24,6 +24,7 @@ class Player
         bool checking_equipment(std::string name);
 
         void display_tavern_trade();
+        void display_equipment();
         void get_topbar();
         void gamblers(int value);
         

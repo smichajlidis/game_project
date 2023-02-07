@@ -63,6 +63,12 @@ int main() {
         
         system("cls");
         player.decrease_drunk();
+        
+        if (choice == 6) {
+            player.get_topbar();
+            player.display_equipment();
+        }
+        
         player.get_topbar();
         
         string file_name = "opisy/"+to_string(navigation)+".txt";
@@ -431,16 +437,16 @@ void fight(Player &player, Enemy enemy) {
     } while (player.health>0 && enemy.health>0);
     
     if (player.health <= 0) {
-        std::cout<<"\nPrzegrales...";
+        std::cout<<"Przegrales...";
     }
     else {
-        std::cout<<"\nWygrales!\n\n";
+        std::cout<<"Wygrales!\n\n";
         player.strength++;
         for(auto i: enemy.equipment) {
             (player.equipment).push_back(i);
             cout<<i.get_name()<<" +"<<i.get_amount()<<"\n";
         }
-        std::cout<<"Sila +1";
+        std::cout<<"Sila +1\n";
     }
     std::cin>>any_key;
     
