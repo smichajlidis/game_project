@@ -60,7 +60,7 @@ int main() {
     player.add_tavern_trade(szata);
 
     while(navigation!=9 && navigation!=0){
-
+        
         system("cls");
         player.decrease_drunk();
         player.get_topbar();
@@ -209,6 +209,7 @@ int main() {
                     case 0: navigation=(navigation-navigation%10)/10; break;
                     case 1: fight(player, enemy); break;
                 }
+                navigation=(navigation-navigation%10)/10;
                 
                 break;
             }
@@ -358,7 +359,13 @@ int main() {
             }
         }
         plik.close();
+        
+        if (player.get_health()<=0)
+            navigation=9;
+        
     }
+    system("cls");
+    std::cout<<"\nKONIEC GRY\n\n";
     return 0;
 }
 
@@ -427,5 +434,6 @@ void fight(Player &player, Enemy enemy) {
         std::cout<<"Wygrales!";
     
     std::cin>>choice;
+    
     
 }
