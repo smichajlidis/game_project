@@ -3,10 +3,11 @@
 #include <iostream>
 #include <vector>
 #include "Item.h"
+#include "Enemy.h"
 
 class Player
 {
-private:
+    friend void fight(Player &player, Enemy);
 
     int gold;
     int strength;

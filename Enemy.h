@@ -3,10 +3,14 @@
 #include <iostream>
 #include <vector>
 #include "Item.h"
+#include "Player.h"
+
+class Player;
 
 class Enemy {
     
-private:
+    friend void fight(Player &player, Enemy);
+    
     std::string name {};
     int strength {};
     std::vector <Item> equipment {};

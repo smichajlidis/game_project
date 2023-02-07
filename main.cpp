@@ -12,6 +12,8 @@ using namespace std;
 
 void chosing (int &count, fstream &plik, std::string &wiersz, int &choice, int &navigation);
 
+void fight(Player &player, Enemy);
+
 int main() {
     
     int choice {};
@@ -45,9 +47,7 @@ int main() {
     bandyta.add_equipment(zbroja_skorzana);
     bandyta.add_equipment(jablko);
     forest_enemy.push_back(bandyta);
-    
-    
-    
+
     
     player.add_equipment(luk);
     
@@ -201,12 +201,13 @@ int main() {
                 break;
             }
             case 1214: {
-                std::cout<<"Zaatakowal cie "<<forest_enemy.at(rand()%forest_enemy.size()).get_name()<<"!\n";
+                Enemy enemy {forest_enemy.at(rand()%forest_enemy.size())};
+                std::cout<<"Zaatakowal cie "<<enemy.get_name()<<"!\n";
                 std::cout<<"\n1. Walcz\n0. Uciekaj\n\nCo robisz? ";
                 std::cin>>choice;
                 switch(choice) {
                     case 0: navigation=(navigation-navigation%10)/10; break;
-                    case 1: cout<<"no to walka!"; break;
+                    case 1: fight(player, enemy); break;
                 }
                 
                 break;
@@ -385,3 +386,8 @@ void chosing(int &count, fstream &plik, std::string &wiersz, int &choice, int &n
     }
 }
     
+void fight(Player &player, Enemy enemy) {
+    int choice;
+    std::cout<<"Rozpoczyna sie walka miedzy toba a przeciwnikiem o nazwie "<<enemy.name;
+    std::cin>>choice;
+}
