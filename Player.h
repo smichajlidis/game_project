@@ -5,6 +5,8 @@
 #include "Item.h"
 #include "Enemy.h"
 
+class Enemy;
+
 class Player
 {
     friend void fight(Player &player, Enemy);

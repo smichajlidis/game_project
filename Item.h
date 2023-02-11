@@ -4,9 +4,8 @@
 
 class Item
 {
-    private:
+
         std::string name;
-        int amount;
         int price;
         int value;
         bool food;
@@ -14,7 +13,7 @@ class Item
         bool armor;
         bool hunting;
         bool clothing;
-        
+        int amount;     
         
     public:
         std::string get_name();
