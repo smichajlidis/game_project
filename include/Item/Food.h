@@ -1,7 +1,7 @@
 #ifndef _FOOD_H_
 #define _FOOD_H_
 #include <iostream>
-#include "Item.h"
+#include "../../Item.h"
 
 
 class Food: public Item {

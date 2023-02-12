@@ -7,7 +7,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Item.h"
-#include "Food.h"
+#include "include/Item/Food.h"
 using namespace std;
 
 void chosing (int &count, fstream &plik, std::string &wiersz, int &choice, int &navigation);
