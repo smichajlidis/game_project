@@ -6,8 +6,8 @@
 #include <ctime>
 #include "Player.h"
 #include "Enemy.h"
-#include "include/Item.h"
-
+#include "Item.h"
+#include "Food.h"
 using namespace std;
 
 void chosing (int &count, fstream &plik, std::string &wiersz, int &choice, int &navigation);
@@ -33,6 +33,8 @@ int main() {
     Item skora {"skora",45};
     Item surowe_mieso {"surowe_mieso",17};
     
+    Food jedzenie;
+
     std::vector <Enemy> forest_enemy {};
     std::vector <Enemy> cellar_enemy {};
     
