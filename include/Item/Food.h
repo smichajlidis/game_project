@@ -3,7 +3,6 @@
 #include <iostream>
 #include "../../Item.h"
 
-
 class Food: public Item {
     bool food;
 
