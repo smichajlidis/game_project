@@ -1,7 +1,7 @@
 #ifndef _WEAPON_H_
 #define _WEAPON_H_
 #include <iostream>
-#include "../../item.h"
+#include "../item.h"
 
 class Weapon: public Item {
     bool mWeapon;

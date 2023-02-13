@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "Player.h"
-#include "Item.h"
+#include "include/item.h"
 
 bool Player::checking_equipment(std::string name) {
     for (auto i: equipment){

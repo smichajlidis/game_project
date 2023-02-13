@@ -6,7 +6,9 @@
 #include <ctime>
 #include "Player.h"
 #include "Enemy.h"
-#include "item.h"
+
+#include "include/item.h"
+#include "src/item.cpp"
 
 #include "include/item/food.h"
 #include "src/item/food.cpp"
