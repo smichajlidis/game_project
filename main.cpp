@@ -8,6 +8,8 @@
 #include "Enemy.h"
 #include "Item.h"
 #include "include/Item/Food.h"
+#include "src/Item/Food.cpp"
+
 using namespace std;
 
 void chosing (int &count, fstream &plik, std::string &wiersz, int &choice, int &navigation);
