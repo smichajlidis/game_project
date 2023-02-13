@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Item.h"
+#include "item.h"
 
 Item::Item(std::string name_val, int price_val, int value_val, bool food_val, bool weapon_val, bool armor_val, bool hunting_val, bool clothing_val, int amount_val) 
     : name {name_val}, price {price_val}, value {value_val}, food {food_val}, weapon {weapon_val}, armor {armor_val}, hunting {hunting_val}, clothing {clothing_val}, amount {amount_val} {

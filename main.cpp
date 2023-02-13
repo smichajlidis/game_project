@@ -6,9 +6,18 @@
 #include <ctime>
 #include "Player.h"
 #include "Enemy.h"
-#include "Item.h"
-#include "include/Item/Food.h"
-#include "src/Item/Food.cpp"
+#include "item.h"
+
+#include "include/item/food.h"
+#include "src/item/food.cpp"
+#include "include/item/armor.h"
+#include "src/item/armor.cpp"
+#include "include/item/clothes.h"
+#include "src/item/clothes.cpp"
+#include "include/item/hunting-weapon.h"
+#include "src/item/hunting-weapon.cpp"
+#include "include/item/weapon.h"
+#include "src/item/weapon.cpp"
 
 using namespace std;
 
@@ -35,7 +44,12 @@ int main() {
     Item skora {"skora",45};
     Item surowe_mieso {"surowe_mieso",17};
     
-    Food jedzenie;
+    Food food;
+    Armor armor;
+    Clothes clothes;
+    HuntingWeapon hunting_weapon;
+    Weapon weapon;
+
 
     std::vector <Enemy> forest_enemy {};
     std::vector <Enemy> cellar_enemy {};

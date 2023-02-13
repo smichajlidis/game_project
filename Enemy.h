@@ -2,7 +2,7 @@
 #define _ENEMY_H_
 #include <iostream>
 #include <vector>
-#include "Item.h"
+#include "item.h"
 #include "Player.h"
 
 class Player;

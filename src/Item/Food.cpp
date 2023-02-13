@@ -1,8 +1,8 @@
 #include <iostream>
-#include "../../include/Item/Food.h"
+#include "../../include/item/food.h"
 
 Food::Food() {
-    food=false;
+    mFood=true;
 }
 
 Food::~Food() {

@@ -1,10 +1,10 @@
 #ifndef _FOOD_H_
 #define _FOOD_H_
 #include <iostream>
-#include "../../Item.h"
+#include "../../item.h"
 
 class Food: public Item {
-    bool food;
+    bool mFood;
 
 public:
     Food();
